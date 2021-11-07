@@ -1,0 +1,4 @@
+client/node_modules
+istio-1.11.4
+services/service1/src/node_modules
+services/service2/src/node_modules

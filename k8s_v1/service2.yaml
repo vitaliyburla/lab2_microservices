@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service2-deployment
+spec:
+  selector:
+    matchLabels:
+      app: service2
+  template:
+    metadata:
+      labels:
+        app: service2
+    spec:
+      containers:
+        - image: service2:0.2
+          imagePullPolicy: Never
+          name: service2
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              memory: 256Mi
+            requests:
+              cpu: 75m
+              memory: 64Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service2-service
+spec:
+  ports:
+    - port: 80
+      targetPort: 8080
+  selector:
+    app: service2
