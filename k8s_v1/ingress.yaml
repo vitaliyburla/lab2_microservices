@@ -13,6 +13,13 @@ spec:
                 name: client-service
                 port:
                   number: 80
+          - path: /api/service3
+            pathType: Prefix
+            backend:
+              service:
+                name: service3-service
+                port:
+                  number: 80
           - path: /api/service2
             pathType: Prefix
             backend:
@@ -27,3 +34,10 @@ spec:
                 name: service1-service
                 port:
                   number: 80
+          - path: /api/kafka
+            pathType: Prefix
+            backend:
+              service:
+                name: kafka
+                port:
+                  number: 9092

@@ -4,11 +4,11 @@ metadata:
   name: service2-virtual
 spec:
   hosts:
-    - service2-service # ім'я Service до якого застосовується налаштування
+    - service2-service
   http:
     - route:
         - destination:
-            host: service2-service # ім'я Service до якого застосовується налаштування
+            host: service2-service
       timeout: 2s
       retries:
         attempts: 3

@@ -2,6 +2,7 @@ const e = require("cors");
 const cors = require("cors");
 const express = require("express");
 const axios = require("axios");
+const { Kafka } = require("kafkajs");
 
 const app = express();
 
@@ -22,6 +23,31 @@ app.get("/api/service1/test", (req, res, next) => {
     .catch((err) => {
       res.status(200).json(err.message);
     });
+});
+
+app.get("/api/service1/kafka-producer", async (req, res, next) => {
+  let qu = req.query.message || "Empty message";
+
+  const clientId = "service1";
+  const kafka = new Kafka({
+    clientId: clientId,
+    brokers: ["kafka:9092"],
+  });
+
+  const producer = kafka.producer();
+  const admin = kafka.admin();
+  await admin.connect();
+  await producer.connect();
+  await admin.createTopics({
+    waitForLeaders: true,
+    topics: [{ topic: "myRandomTopicString123" }],
+  });
+  await producer.send({
+    topic: "test-topic",
+    messages: [{ value: qu }],
+  });
+
+  res.status(200).send(`Message "${qu}" sent`);
 });
 
 app.listen(8080, () => {
