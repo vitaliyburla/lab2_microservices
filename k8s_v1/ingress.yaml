@@ -1,43 +1,43 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: demo-ingress
+    name: demo-ingress
 spec:
-  rules:
-    - http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: client-service
-                port:
-                  number: 80
-          - path: /api/service3
-            pathType: Prefix
-            backend:
-              service:
-                name: service3-service
-                port:
-                  number: 80
-          - path: /api/service2
-            pathType: Prefix
-            backend:
-              service:
-                name: service2-service
-                port:
-                  number: 80
-          - path: /api/service1
-            pathType: Prefix
-            backend:
-              service:
-                name: service1-service
-                port:
-                  number: 80
-          - path: /api/kafka
-            pathType: Prefix
-            backend:
-              service:
-                name: kafka
-                port:
-                  number: 9092
+    rules:
+        - http:
+              paths:
+                  - path: /
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: client-service
+                            port:
+                                number: 80
+                  - path: /api/service3
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: service3-service
+                            port:
+                                number: 80
+                  - path: /api/service2
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: service2-service
+                            port:
+                                number: 80
+                  - path: /api/service1
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: service1-service
+                            port:
+                                number: 80
+                  - path: /api/kafka
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: kafka
+                            port:
+                                number: 9092
